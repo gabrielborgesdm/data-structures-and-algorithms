@@ -32,3 +32,4 @@ executeCallbackInsideOfALoop("Assign and compare", 999999999, () => {
 
 // I know it's irrelevant, but I was just curious to see if assignments could cause time in a function
 // In order to see more details, have a look at Big-O-sheet.pdf
+// There is also https://www.bigocheatsheet.com/
