@@ -54,7 +54,10 @@ class HashTable {
     get(key) {
         const i = this._hash(key)
         const j = this._getKeyIndex(i, key)
-        return j !== -1 ? this.data[i][j][1] : undefined
+        if (this.data[i] && this.data[i][j]) {
+            return this.data[i][j][1]
+        }
+        return undefined
     }
 
     /**
@@ -86,15 +89,6 @@ class HashTable {
     values() {
         return this._getKeysOrValues(false)
     }
-
-
 }
-const hash = new HashTable(20)
-hash.set("1", "test")
-hash.set("2", "test1")
-hash.set("3", "test2")
-hash.set("asd", "test3")
-hash.set("asd", "test4")
-console.log(hash.get("3"))
-console.log(hash.keys())
-console.log(hash.values())
+
+module.exports = HashTable
