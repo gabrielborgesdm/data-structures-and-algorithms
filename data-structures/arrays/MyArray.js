@@ -1,3 +1,5 @@
+const ValidationBuilder = require("../utils/validation")
+
 class MyArray {
     constructor() {
         this.length = 0
@@ -5,6 +7,7 @@ class MyArray {
     }
 
     get(index) {
+
         return this.data[index]
     }
 
@@ -35,4 +38,5 @@ class MyArray {
         this.length--
     }
 }
+
 
