@@ -95,6 +95,22 @@ class LinkedList {
         return values
     }
 
+    reverse() {
+        let firstNode = this.head
+        let secondNode = firstNode.next
+        while (secondNode !== null) {
+            const temp = secondNode.next
+            secondNode.next = firstNode
+            firstNode = secondNode
+            secondNode = temp
+        }
+        this.head.next = null
+        this.tail = this.head
+        this.head = firstNode
+
+        return this.values()
+    }
+
     _buildNode(value) {
         return {
             next: null,
@@ -102,3 +118,4 @@ class LinkedList {
         }
     }
 }
+
