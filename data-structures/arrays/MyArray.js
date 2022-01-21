@@ -37,6 +37,15 @@ class MyArray {
         delete this.data[this.length - 1]
         this.length--
     }
+
+    values() {
+        const listOfValues = []
+        for (let i = 0; i < this.length; i++) {
+            listOfValues.push(this.data[i])
+        }
+        return listOfValues
+    }
 }
 
+module.exports = MyArray
 
