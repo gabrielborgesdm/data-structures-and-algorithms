@@ -1,24 +1,50 @@
-const LinkedList = require("../linked-lists/linked-list")
 
 class Queue {
-    constructor(item) {
-        this.data = new LinkedList(item)
+    constructor() {
+        this.first = null
+        this.last = null
+        this.length = 0
     }
 
+
     enqueue(item) {
-        return this.data.append(item)
+        const newNode = this._buildNode(item)
+        if (!this.last) {
+            this.last = newNode
+            this.first = this.last
+        } else {
+            this.last.next = newNode
+            this.last = this.last.next
+        }
+        return ++this.length
     }
 
     dequeue() {
-        return this.data.shift()
+        if (!this.length) return null
+        const oldValue = this.first.value
+        this.first = this.first.next
+        this.length--
+        return oldValue
     }
 
     peek() {
-        return this.data.get(this.data.length - 1)
+        return this.first.value
     }
 
     values() {
-        return this.data.values()
+        const values = []
+        let currentNode = this.first
+        while (currentNode) {
+            values.push(currentNode.value)
+            currentNode = currentNode.next
+        }
+        return values
+    }
+
+    _buildNode(value) {
+        return {
+            value,
+            next: null
+        }
     }
 }
-
