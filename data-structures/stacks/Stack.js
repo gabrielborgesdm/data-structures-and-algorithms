@@ -1,23 +1,50 @@
-const MyArray = require("../arrays/MyArray")
 
 class Stack {
     constructor() {
-        this.data = new MyArray()
+        this.bottom = null
+        this.top = null
+        this.length = 0
     }
 
-    enqueue(item) {
-        return this.data.push(item)
+    push(item) {
+        const newNode = this._buildNode(item)
+        if (!this.top) {
+            this.top = newNode
+            this.bottom = this.top
+        } else {
+            newNode.next = this.top
+            this.top = newNode
+        }
+
+        return ++this.length
     }
 
-    dequeue() {
-        return this.data.pop()
+    pop() {
+        if (!this.length) return null
+        const value = this.top.value
+        this.top = this.top.next
+        this.length--
+        return value
     }
 
     peek() {
-        return this.data.get(this.data.length - 1)
+        return this.top.value
     }
 
     values() {
-        return this.data.values()
+        const values = []
+        let currentNode = this.top
+        while (currentNode) {
+            values.push(currentNode.value)
+            currentNode = currentNode.next
+        }
+        return values
+    }
+
+    _buildNode(value) {
+        return {
+            value,
+            next: null
+        }
     }
 }
