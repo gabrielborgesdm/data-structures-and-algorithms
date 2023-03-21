@@ -114,8 +114,23 @@ class LinkedList {
     _buildNode(value) {
         return {
             next: null,
-            value
+            value: value
         }
+    }
+
+    get(position) {
+        // 3   -   4
+        if (position + 1 > this.length) {
+            throw "Position can't be higher than length"
+        }
+        let i = 0
+        let currentNode = this.head
+
+        while (i < position) {
+            currentNode = currentNode.next
+            i++
+        }
+        return currentNode
     }
 }
 
